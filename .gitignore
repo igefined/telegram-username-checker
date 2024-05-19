@@ -1,0 +1,8 @@
+.idea
+.vscode
+
+bin
+out
+
+.env
+.env.local

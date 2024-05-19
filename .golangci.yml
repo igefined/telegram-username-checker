@@ -1,0 +1,34 @@
+run:
+  go: '1.21.3'
+  timeout: 5m
+linters:
+  enable:
+    - asciicheck
+    - bodyclose
+    - contextcheck
+    - durationcheck
+    - errcheck
+    - errname
+    - errorlint
+    - exportloopref
+    - forcetypeassert
+    - goconst
+    - gocritic
+    - gofmt
+    - lll
+    - makezero
+    - misspell
+    - prealloc
+    - rowserrcheck
+    - sqlclosecheck
+    - unparam
+    - unused
+    - wastedassign
+    - whitespace
+    - goimports
+linters-settings:
+  lll:
+    line-length: 120
+  ireturn:
+    allow:
+      - error,generic,anon,stdlib,ogen\.[A-Za-z]+Res

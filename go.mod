@@ -3,10 +3,10 @@ module github.com/igefined/telegram-username-checker
 go 1.22.0
 
 require (
-	github.com/gotd/contrib v0.20.0
 	github.com/gotd/td v0.102.0
 	github.com/igefined/go-kit v0.0.3
 	go.uber.org/zap v1.27.0
+	golang.org/x/term v0.20.0
 )
 
 require (

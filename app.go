@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/gotd/td/telegram"
+	"github.com/gotd/td/telegram/auth"
 
 	"github.com/igefined/go-kit/log"
 )
@@ -35,10 +36,20 @@ func NewApp(logger *log.Logger, cfg *Config) (*App, error) {
 func (a *App) RunChecker(ctx context.Context, usernames []string) error {
 	var out = make([]string, 0)
 
+	flow := auth.NewFlow(Terminal{}, auth.SendCodeOptions{})
+
 	if err := a.client.Run(ctx, func(ctx context.Context) error {
-		for i, username := range usernames {
-			if i%2 == 0 {
+		if err := a.client.Auth().IfNecessary(ctx, flow); err != nil {
+			return err
+		}
+
+		api := a.client.API()
+
+		for _, username := range usernames {
+			_, err := api.AccountCheckUsername(ctx, username)
+			if err == nil {
 				out = append(out, username)
+				continue
 			}
 		}
 
